@@ -180,4 +180,66 @@ function JSON_Get_ModulosxPerfil($perfil)
 
 	return json_encode($datos,JSON_HEX_TAG);	
 }
+
+/**
+ * [Boolean_Insertar_Usuario Insertar un nuevo usuario.]
+ * @param [type] $nombre    [nombre del usuario]
+ * @param [type] $apellido  [apellldo del usuario]
+ * @param [type] $username  [User name]
+ * @param [type] $password  [contraseña]
+ * @param [Int] $pregunta  [Numero de la pregunta]
+ * @param [type] $respuesta [Respuesta]
+ * @param [type] $email     [email del nuevo usuario]
+ */
+function Boolean_Insertar_Usuario($nombre,$apellido,$username,$password,$pregunta,$respuesta,$email)
+{
+	list ($valid,$mensaje) = Boolean_Existencia_Usuario($username,$email);
+	if(!$valid)
+	{
+		$query = ingresar(sprintf("INSERT INTO `tb_usuarios`(`id_usuarios`, `nombre`, `apellido`, `perfil``usuario`, `contraseña`, `pregunta`, `respuesta`,`email`, `estado`)
+			VALUES (NULL,'%s','%s','2','%s','%s','%d','%s','%s',
+				'procesando')"),escape($nombre),escape($apellido),escape($username),escape($password),
+		escape($pregunta),escape($respuesta),escape($email));	
+
+		if($query){
+			return array($query,'El usuario se creó exitosamente.');
+		}
+		else{
+			return array($query,'El usuario se no se puedo crear.');
+		}	
+	}	
+	else
+	{
+		return array(False,$mensaje);
+
+	}
+}
+/**
+ * [Boolean_Existencia_Usuario Valida si existe el usuario.]
+ * @param [type] $username [nombre de usuario]
+ * @param [type] $email    [email del usuario]
+ */
+function Boolean_Existencia_Usuario($username,$email)
+{
+	$query = consultar(sprintf("SELECT email,usuario FROM tb_usuarios WHERE email='%s' or usuario='%s'"),escape($username),escape($email));
+	if(Int_consultaVacia($query)>0)
+	{
+		return array(True,'El usuario o el email ya existen, intenta nuevamente.');
+	}else
+	{
+		return array(False,'');	
+	}
+
+	}
+/**
+ * [Boolean_Set_Perfil_Estado_Usuario Permite modificar el estado o el perfil de un usuario]
+ * @param [type] $id_usuarios [description]
+ * @param [type] $estado      [nuevo estado]
+ * @param [type] $id_perfiles [nuevo perfil]
+ */
+function Boolean_Set_Perfil_Estado_Usuario($id_usuarios,$estado,$id_perfiles)
+{
+	$query = modificar(sprintf("UPDATE `tb_usuarios` SET `estado`='%s', `perfil` ='$d' WHERE id_usuarios='%d'"),escape($estado),escape($id_perfiles),escape($id_usuarios));
+	return $query;
+}
 ?>

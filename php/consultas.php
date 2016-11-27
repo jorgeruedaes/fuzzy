@@ -31,7 +31,7 @@ function modificar($query)
 {
 	global $conexion;
 
-	return mysqli_query($conexion,sprintf($query));
+	return mysqli_query($conexion,$query);
 
 	
 }
@@ -44,7 +44,7 @@ function eliminar($query)
 {
 	global $conexion;
 
-	return mysqli_query($conexion,sprintf($query));
+	return mysqli_query($conexion,$query);
 
 	}
 
@@ -56,8 +56,8 @@ function eliminar($query)
 	function insertar($query)
 {
 	global $conexion;
-
-	return mysqli_query($conexion,sprintf($query));
+	
+	return mysqli_query($conexion,$query);
 
 	
 }

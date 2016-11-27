@@ -33,8 +33,8 @@ function String_Get_Valores($solicitud){
  */
 function base_url()
 {
-	$pagina = "192.168.1.37";
-	return "http://".$pagina."/Admin/AdminBSBMaterialDesign-master/";
+	$pagina = "localhost";
+	return "http://".$pagina."/AdminProjects/Admin/trunk/";
 }
 	
 

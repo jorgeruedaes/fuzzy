@@ -1,6 +1,7 @@
 
 <?php
 	include('configuracion.php');
+	
 	$server=String_Get_Valores('server');
 	$username=String_Get_Valores('username');
 	$password=String_Get_Valores('password');
