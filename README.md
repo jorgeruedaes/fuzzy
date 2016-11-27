@@ -1,5 +1,3 @@
-AdminBSB - Material Design
-=======================
 
 FAQ
 ===
