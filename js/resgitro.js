@@ -1,4 +1,4 @@
-//	var Creador = '<?php echo $usuario['id_usuarios']; ?>'
+
 $(function() {
 
 var resgistro = {
@@ -14,7 +14,7 @@ var resgistro = {
 				url: 'pages/usuarios/peticiones/peticiones.php',
 				type: 'POST',
 				data: {
-					bandera: "modificar",
+					bandera: "guardar",
 					id_perfiles: $('.select-perfiles option:selected').val(),
 					estado: $('.select-estados option:selected').val(),
 					id_usuarios: $('#defaultModal').data('usuario')
@@ -44,13 +44,16 @@ var resgistro = {
 		});
 
 	},
-  validarContraseña: function(){
+	validarContraseña: function(){
+
+	},
+  ValidarExistenciaUsuario : function(){
 
   }
 };
 $(document).ready(function () {
 
-	usuarios.inicio();
+	resgistro.inicio();
 
 });
 

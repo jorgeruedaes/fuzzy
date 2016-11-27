@@ -1,4 +1,4 @@
-//	var Creador = '<?php echo $usuario['id_perfil']; ?>'
+
 $(function() {
 
 	var perfil = {

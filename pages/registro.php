@@ -1,5 +1,4 @@
 <?php
-require('../php/configuracion.php');
 require('../php/principal.php');
 ?>
 <!DOCTYPE html>
