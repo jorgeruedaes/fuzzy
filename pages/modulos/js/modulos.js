@@ -1,27 +1,27 @@
-//	var Creador = '<?php echo $usuario['id_usuarios']; ?>'
+//	var Creador = '<?php echo $usuario['id_modulos']; ?>'
 $(function() {
 
-	var usuarios = {
+	var modulos = {
 		inicio: function () {
-			usuarios.recargar();
+			modulos.recargar();
 		},
 		recargar: function () {
-			usuarios.enviarDatos();
-			usuarios.borrarUsuario();
-			usuarios.seleccionarIcono();
-			usuarios.cargarModal();
-			usuarios.CambioSelect();
+			modulos.enviarDatos();
+			modulos.borrarUsuario();
+			modulos.seleccionarIcono();
+			modulos.cargarModal();
+			modulos.CambioSelect();
 		},
 		enviarDatos: function () {
 			$('.guardar').off('click').on('click', function () {
 				$.ajax({
-					url: 'pages/usuarios/peticiones/peticiones.php',
+					url: 'pages/modulos/peticiones/peticiones.php',
 					type: 'POST',
 					data: {
 						bandera: "modificar",
 						id_perfiles: $('.select-perfiles option:selected').val(),
 						estado: $('.select-estados option:selected').val(),
-						id_usuarios: $('#defaultModal').data('usuario')
+						id_modulos: $('#defaultModal').data('usuario')
 
 					},
 					success: function (resp) {
@@ -63,7 +63,7 @@ $(function() {
 					closeOnCancel: false
 				}, function (isConfirm) {
 					if (isConfirm) {
-						usuarios.desactivar(valor);
+						modulos.desactivar(valor);
 					} else {
 						swal("Cancelado", "", "error");
 					}
@@ -76,11 +76,11 @@ $(function() {
 		desactivar: function(valor)
 		{
 			$.ajax({
-				url: 'pages/usuarios/peticiones/peticiones.php',
+				url: 'pages/modulos/peticiones/peticiones.php',
 				type: 'POST',
 				data: {
 					bandera: "eliminar",
-					id_usuarios: valor.data('id')
+					id_modulos: valor.data('id')
 
 				},
 				success: function (resp) {
@@ -133,7 +133,7 @@ $(function() {
 	};
 	$(document).ready(function () {
 
-		usuarios.inicio();
+		modulos.inicio();
 
 	});
 
