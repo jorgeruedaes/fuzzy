@@ -108,7 +108,7 @@ $(function() {
 		},
 		cargarModal: function()
 		{
-			$('.buscar').off('click').on('click', function () {
+			$('.edit-modulo').off('click').on('click', function () {
 				$('#defaultModal').modal('show'); 
 			});
 		},

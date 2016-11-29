@@ -69,8 +69,28 @@ function eliminar($query)
 {
 	return mysqli_num_rows($consulta);
 }
-
-
-
+/**
+ * [Start_Transaction Permite iniciar una transacción]
+ */
+ function start()
+ {
+ 	return mysqli_begin_transaction($conexion,MYSQLI_TRANS_START_READ_WRITE);
+ }
+ /**
+  * [commit Confirma una transacción]
+  * @return [type] [Boolean]
+  */
+ function commit()
+{
+	return mysqli_commit($conexion);
+}
+/**
+ * [rollback Devuelve una transacción]
+ * @return [type] [Boolean]
+ */
+	function rollback()
+{
+	return mysqli_rollback($conexion);
+}
 
 ?>

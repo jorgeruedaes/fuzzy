@@ -127,21 +127,69 @@ if(Boolean_Get_Modulo_Permiso($id_modulos,$_SESSION['perfil'])){
 
 					<div class="body">
 						<form>
-							<label for="perfil">Perfil</label>
-							<div class="form-group">
-								<div class="form-line">
-									<input type="text" class="form-control nombre" placeholder="Nombre perfil" />
+							<div class="row clearfix">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group">
+										<div class="form-line">
+											<input type="text" class="form-control" placeholder="Nombre">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+									<div class="form-group">
+										<div class="form-line">
+											<input type="text" class="form-control" placeholder="Ruta de la carpeta contenedora">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group">
+										<div class="form-line">
+											<input type="text" class="form-control icono" placeholder="Visita la seccion de iconos">
+										</div>
+									</div>
 								</div>
 							</div>
-							<label for="estado">Nivel</label>
-							<div class="form-group ">
-								<div class="form-line">
-									<input type="number" class="form-control nivel" placeholder="Nivel" />
+							<div class="row clearfix">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group a">
+										<select class="form-control select-tipo">
+											<option value="">-- Tipo de Modulo --</option>
+											<option value="0">Principal</option>
+											<option value="1">Submenu</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group">
+										<select class="form-control select-submenus" disabled="true" >
+											<option value="">--Tendra Submenus --</option>
+											<option value="1">Si</option>
+											<option value="0">No</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group a">
+										<select class="form-control select-padre" disabled="true">
+											<option value="">-- Selecciona el padre --</option>
+											<option value="0">Principal</option>
+											<option value="1">Submenu</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+									<div class="form-group">
+										<div class="form-line">
+											<input type="number" min"0" maxlength="2" class="form-control" placeholder="Orden ">
+										</div>
+									</div>
 								</div>
 							</div>
 
 						</form>
 					</div>
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info waves-effect guardar">Guardar cambios</button>
@@ -154,7 +202,7 @@ if(Boolean_Get_Modulo_Permiso($id_modulos,$_SESSION['perfil'])){
 	
 
 
-<?php
+	<?php
 }else
 {
 	require("../sinpermiso.php");
