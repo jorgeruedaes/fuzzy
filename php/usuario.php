@@ -198,8 +198,8 @@ function Boolean_Insertar_Usuario($nombre,$apellido,$username,$password,$pregunt
 	{
 		$query = ingresar(sprintf("INSERT INTO `tb_usuarios`(`id_usuarios`, `nombre`, `apellido`, `perfil``usuario`, `contraseña`, `pregunta`, `respuesta`,`email`, `estado`)
 			VALUES (NULL,'%s','%s','2','%s','%s','%d','%s','%s',
-				'procesando')"),escape($nombre),escape($apellido),escape($username),escape($password),
-		escape($pregunta),escape($respuesta),escape($email));	
+				'procesando')",escape($nombre),escape($apellido),escape($username),escape($password),
+		escape($pregunta),escape($respuesta),escape($email)));	
 
 		if($query){
 			return array($query,'El usuario se creó exitosamente.');
@@ -221,7 +221,7 @@ function Boolean_Insertar_Usuario($nombre,$apellido,$username,$password,$pregunt
  */
 function Boolean_Existencia_Usuario($username,$email)
 {
-	$query = consultar(sprintf("SELECT email,usuario FROM tb_usuarios WHERE email='%s' or usuario='%s'"),escape($username),escape($email));
+	$query = consultar(sprintf("SELECT email,usuario FROM tb_usuarios WHERE email='%s' or usuario='%s'",escape($username),escape($email)));
 	if(Int_consultaVacia($query)>0)
 	{
 		return array(True,'El usuario o el email ya existen, intenta nuevamente.');
@@ -230,7 +230,7 @@ function Boolean_Existencia_Usuario($username,$email)
 		return array(False,'');	
 	}
 
-	}
+}
 /**
  * [Boolean_Set_Perfil_Estado_Usuario Permite modificar el estado o el perfil de un usuario]
  * @param [type] $id_usuarios [description]
@@ -239,7 +239,50 @@ function Boolean_Existencia_Usuario($username,$email)
  */
 function Boolean_Set_Perfil_Estado_Usuario($id_usuarios,$estado,$id_perfiles)
 {
-	$query = modificar(sprintf("UPDATE `tb_usuarios` SET `estado`='%s', `perfil` ='$d' WHERE id_usuarios='%d'"),escape($estado),escape($id_perfiles),escape($id_usuarios));
+	$query = modificar(sprintf("UPDATE `tb_usuarios` SET `estado`='%s', `perfil` ='%d' WHERE id_usuarios='%d' ",escape($estado),escape($id_perfiles),escape($id_usuarios)));
 	return $query;
+}
+/**
+ * [Boolean_Set_Password Modificar el password de un usuario]
+ * @param [type] $password [nueva contraseña]
+ * @param [type] $usuario  [id_usuario del usuario]
+ */
+function Boolean_Set_Password($password,$usuario)
+{
+	$password  = password_hash($password, PASSWORD_BCRYPT);
+	$query =  modificar(sprintf("UPDATE `tb_usuarios` SET contraseña='%s' WHERE id_usuarios='%d'",escape($contraseña),escape($usuario)));
+	return $query;
+}
+/**
+ * [Boolean_Set_Usuario Modficar los datos de un usuario]
+ * @param [type] $nombre    [description]
+ * @param [type] $apellido  [description]
+ * @param [type] $email     [description]
+ * @param [type] $pregunta  [description]
+ * @param [type] $respuesta [description]
+ * @param [type] $usuario   [description]
+ */
+function Boolean_Set_Usuario($nombre,$apellido,$email,$pregunta,$respuesta,$usuario)
+{
+	$query =  modificar(sprintf("UPDATE `tb_usuarios` SET nombre='%s',apellido='%s',email='%s',pregunta='%d',respuesta='%s' WHERE id_usuarios='%d'",escape($nombre),escape($apellido),escape($email),escape($pregunta),escape($respuesta),escape($usuario)));
+	return $query;	
+}
+/**
+ * [Boolean_Delete_Usuario Permite eliminar un usuario]
+ * @param [type] $id_usuarios [id_del usuario que eliminara]
+ */
+function Boolean_Delete_Usuario($id_usuarios,$perfil)
+{
+	if($perfil==3)
+	{
+	$query =  eliminar(sprintf("DELETE `tb_usuarios` WHERE id_usuarios='%d' and perfil!=3 ",escape($id_usuarios)));
+	return $query;	
+	}
+	else
+	{
+	$query =  eliminar(sprintf("DELETE `tb_usuarios` WHERE id_usuarios='%d' and perfil='1' ",escape($id_usuarios)));
+	return $query;	
+	}
+	
 }
 ?>

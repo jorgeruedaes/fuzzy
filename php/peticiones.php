@@ -38,20 +38,7 @@ else if($bandera === "validar-usuario") {
 	} else {
 		$resultado.='"mensaje":true';
 	}
-}
-// Permite modificar el perfil y su estado de un usuario.
-else if($bandera === "modificar") {
-	$id_usuarios = $_POST['id_usuarios'];
-	$estado = $_POST['estado'];
-	$id_perfiles = $_POST['id_perfiles'];
-		$query =Boolean_Set_Perfil_Estado_Usuario($id_usuarios,$estado,$id_perfiles);
-		if ($query) {
-		$resultado.='"mensaje":true';
-	} else {
-		$resultado.='"mensaje":false';
-	}
-}
-else if($bandera === "recuperar") {
+}else if($bandera === "recuperar") {
 	$email = $_POST['email'];
 	$query = consultar(sprintf("SELECT  id_usuarios,pregunta FROM `tb_usuarios` WHERE email='%s'",escape($email)));
 	$values = mysqli_fetch_array($query);
@@ -75,9 +62,8 @@ else if($bandera === "recuperar") {
 	}
 }
 else if($bandera === "nueva") {
-	$contraseña = $_POST['password'];
-	$contraseña  =	password_hash($contraseña, PASSWORD_BCRYPT);
-	$query = consultar(sprintf("UPDATE `tb_usuarios` SET contraseña='%s' WHERE id_usuarios='%d'",escape($contraseña),escape($$_SESSION['valido'])));
+	$password = $_POST['password'];
+	$query = Boolean_Set_Password($password,$_SESSION['valido']);
 	if ($query) {
 		$_SESSION['recuperada']='Si';
 		header("location:../pages/recuperada.php");
