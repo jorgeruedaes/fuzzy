@@ -1,5 +1,4 @@
-<?php
-require('../php/configuracion.php');
+    <?php
 require('../php/principal.php');
  session_start();   
 
