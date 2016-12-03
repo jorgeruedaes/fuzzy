@@ -36,6 +36,17 @@ function Boolean_Create_Modulo($nombre,$ruta,$icono,$tipo,$submenu,$padre,$orden
 	}
 
 }
+/**
+ * [Boolean_Set_Modulo Modifica n moduló]
+ * @param [type] $id_modulo [description]
+ * @param [type] $nombre    [description]
+ * @param [type] $ruta      [description]
+ * @param [type] $icono     [description]
+ * @param [type] $tipo      [description]
+ * @param [type] $submenu   [description]
+ * @param [type] $padre     [description]
+ * @param [type] $orden     [description]
+ */
 function Boolean_Set_Modulo($id_modulo,$nombre,$ruta,$icono,$tipo,$submenu,$padre,$orden)
 {
 	if($tipo=='Principal' and $padre=='0')

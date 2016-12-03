@@ -1,7 +1,8 @@
 <?php
 require('../php/configuracion.php');
+    session_start();
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 
 <head>

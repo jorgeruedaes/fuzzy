@@ -117,14 +117,13 @@ function Array_Get_Preguntas()
 	}
 	return $datos;
 }
-/**
+	/**
  * [String_Pregunta Retorna el texto de la pregunta]
  * @param [type] $pregunta [Identificador de la pregunta]
  */
 function String_Pregunta($pregunta)
-{
-
-	$consulta = consultar("SELECT pregunta FROM tb_preguntas WHERE id_preguntas=$pregunta ");
+	{
+	$consulta =  consultar("SELECT pregunta FROM tb_preguntas WHERE id_preguntas=$pregunta ");
 	$informacion = mysqli_fetch_array($consulta);
 	return $informacion['pregunta'];	
 }

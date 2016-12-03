@@ -50,19 +50,29 @@ function  Boolean_Delete_Perfil($id_perfiles)
 /**
  * [Boolean_Set_PerfilxModulos description]
  * @param JSON $json [Con todos los permisos de un perfil por modulo.]
- * @param INT $json [Lista con los modulos permitidos.]
+ * @param INT $id_perfiles [Lista con los modulos permitidos.]
  */
 function Boolean_Set_PerfilxModulos($json,$id_perfiles)
 {
 	$json = json_decode($json);
-	for ($i=0; $i < count($json)-1 ; $i++) { 
-	Boolean_New_ModulosxPerfil($id_perfiles,$json[$i]);	
+	if(start()){
+		Boolean_Delete_ModulosxPerfil($id_perfiles);
+		for ($i=0; $i < count($json)-1 ; $i++) {
+			Boolean_New_ModulosxPerfil($id_perfiles,$json[$i]);	
+		}
 	}
-
+	try
+	{
+		return commit();
+	}
+	catch
+	{
+		rollback();
+	}
 }
 /**
  * [Boolean_Pass_Delete_Perfil Prueba si puede borrar un perfil]
- * @param [type] $id_perfiles [id del perfil a probar]
+ * @param [Int] $id_perfiles [id del perfil a probar]
  */
 function Boolean_Pass_Delete_Perfil($id_perfiles)
 {
@@ -71,13 +81,18 @@ function Boolean_Pass_Delete_Perfil($id_perfiles)
 }
 /**
  * [Boolean_Delete_ModulosxPerfil Elimina los modulos autorizados por un perfil]
- * @param [type] $id_perfiles [id del perfil]
+ * @param [Int] $id_perfiles [id del perfil]
  */
 function Boolean_Delete_ModulosxPerfil($id_perfiles)
 {
 	$query = eliminar(sprintf("DELETE FROM `tr_modulosxperfiles` WHERE id_perfiles='%s'",escape($id_perfiles)));
 	return $query;
 }
+/**
+ * [Boolean_New_ModulosxPerfil Crear un nuevo permiso por perfil]
+ * @param [Int] $id_perfiles [description]
+ * @param [Int] $id_modulos  [description]
+ */
 function Boolean_New_ModulosxPerfil($id_perfiles,$id_modulos)
 {
 	$query = insertar(sprintf("INSERT INTO `tr_modulosxperfiles`

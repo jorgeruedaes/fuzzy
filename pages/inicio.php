@@ -1,11 +1,12 @@
 <?php
-require('../php/configuracion.php');
-session_start();
+require('../php/consultas.php');
+	session_start();
+	$_SESSION['Id'] = Int_New_Sesion('99999');
 if(isset($_SESSION['id_usuarios']))
 {
 	header("location:../pages/administracion.php");
 }
-	?>
+?>
 <!DOCTYPE html>
 <html>
 
@@ -63,7 +64,7 @@ if(isset($_SESSION['id_usuarios']))
 						<div class="col-xs-8 p-t-5">
 						</div>
 						<div class="col-xs-4">
-						<input type="hidden" value="conectar" name="bandera" />
+							<input type="hidden" value="conectar" name="bandera" />
 							<button class="btn btn-block bg-pink waves-effect" type="submit">Entrar</button>
 						</div>
 					</div>

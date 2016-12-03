@@ -38,6 +38,7 @@ else if($bandera === "validar-usuario") {
 	} else {
 		$resultado.='"mensaje":true';
 	}
+	// Permite recuperar la contraseña
 }else if($bandera === "recuperar") {
 	$email = $_POST['email'];
 	$query = consultar(sprintf("SELECT  id_usuarios,pregunta FROM `tb_usuarios` WHERE email='%s'",escape($email)));
@@ -50,6 +51,7 @@ else if($bandera === "validar-usuario") {
 		session_destroy();
 		header("location:../pages/error.php");
 	}
+	// Valida la respuesta del usuario.
 }else if($bandera === "validar-respuesta") {
 	$respuesta = $_POST['respuesta'];
 	$query = consultar(sprintf("SELECT id_usuarios FROM `tb_usuarios` WHERE id_usuarios='%d' and respuesta= '%s' ",escape($_SESSION['usuario']),escape($respuesta)));
@@ -61,6 +63,7 @@ else if($bandera === "validar-usuario") {
 		header("location:../pages/error.php");
 	}
 }
+// Permite crear una nueva contraseña.
 else if($bandera === "nueva") {
 	$password = $_POST['password'];
 	$query = Boolean_Set_Password($password,$_SESSION['valido']);
@@ -72,6 +75,7 @@ else if($bandera === "nueva") {
 		header("location:../pages/error.php");
 	}
 }
+// Permite el inicio de sesión.
 else if($bandera === "conectar") {
 	$contraseña= $_POST['password'];
 	$usuario = $_POST['username'];
@@ -83,6 +87,7 @@ else if($bandera === "conectar") {
 			session_start();
 			$_SESSION['id_usuarios']=$values['id_usuarios'];
 			$_SESSION['perfil']=$values['perfil'];
+			$_SESSION['Id']=Int_New_Sesion($values['id_usuarios']);
 			header("location:../pages/administracion.php");
 		}else{
 			header("location:../pages/error.php");

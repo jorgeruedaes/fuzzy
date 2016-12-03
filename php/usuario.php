@@ -250,7 +250,7 @@ function Boolean_Set_Perfil_Estado_Usuario($id_usuarios,$estado,$id_perfiles)
 function Boolean_Set_Password($password,$usuario)
 {
 	$password  = password_hash($password, PASSWORD_BCRYPT);
-	$query =  modificar(sprintf("UPDATE `tb_usuarios` SET contraseña='%s' WHERE id_usuarios='%d'",escape($contraseña),escape($usuario)));
+	$query =  modificar(sprintf("UPDATE `tb_usuarios` SET contraseña='%s' WHERE id_usuarios='%d'",escape($password),escape($usuario)));
 	return $query;
 }
 /**
