@@ -23,7 +23,7 @@ function String_Get_Valores($solicitud){
 	}else if ($solicitud == "password") {
 		return "";
 	}else if ($solicitud == "basededatos") {
-		return "LosJuegos";
+		return "Losjuegos";
 	}
 
 }
